@@ -1,2 +1,2 @@
 .idea
-env-config/mysql.env
+env-config/*.env
