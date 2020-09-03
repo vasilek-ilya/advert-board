@@ -1,0 +1,23 @@
+.advert-photo {
+    display: flex;
+    justify-content: center;
+}
+.advert-photo img {
+    width: 100%;
+    height: 100%;
+}
+.advert-cart {
+    justify-self: center;
+    max-width: 250px;
+    line-height: 15px;
+}
+.advert--title {
+    font-weight: 700;
+}
+.advert-price {
+    font-weight: 700;
+}
+.advert-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
