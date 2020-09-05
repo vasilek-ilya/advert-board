@@ -2,28 +2,40 @@
 
 @section('content')
     <div class="row">
-        <div class="col s4">
-            <select-component
-                v-bind:list="{{ $categories }}"
-                title="Category"
-            ></select-component>
-        </div>
-
-        <div class="col s4">
-            <select-component
-                v-bind:list="{{ $cities }}"
-                title="City"
-            ></select-component>
-        </div>
-
-        <div class="col s4 row">
-            <div class="input-field inline">
-                <input id="email_inline" type="email" class="validate">
+        <form action="" method="GET">
+            <div>
+                <div>
+                    <select name="category">
+                        <option value="" disabled selected>Choose your option</option>
+                        @foreach($categories as $category)
+                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                        @endforeach
+                    </select>
+                    <label>Category</label>
+                </div>
             </div>
-            <i class="material-icons">search</i>
-        </div>
 
-        <h2 class="center-align">Actual adverts</h2>
+            <div>
+                <div>
+                    <select name="city">
+                        <option value="" disabled selected>Choose your option</option>
+                        @foreach($cities as $city)
+                            <option value="{{ $city->id }}">{{ $city->name }}</option>
+                        @endforeach
+                    </select>
+                    <label>City</label>
+                </div>
+            </div>
+
+            <div>
+                <div>
+                    <input name="search" type="text">
+                </div>
+                <input type="submit" value="Search">
+            </div>
+        </form>
+
+        <h2>Actual adverts</h2>
         <div class="advert-list">
             @foreach($adverts as $advert)
             <div class="advert-cart">
@@ -40,4 +52,10 @@
             @endforeach
         </div>
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var elems = document.querySelectorAll('select');
+            var instances = M.FormSelect.init(elems, options);
+        });
+    </script>
 @endsection

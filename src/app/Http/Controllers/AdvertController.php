@@ -15,16 +15,24 @@ class AdvertController extends Controller
 
     public function all(Request $request)
     {
-        $cities = City::pluck('name');
+        $cities = City::all();
 
-        $categories = Category::pluck('name');
+        $categories = Category::all();
 
-        $adverts = Advert::with('city', 'main_photo')
-            ->active()->limit(self::ADVERT_LIMIT)->get();
+        // TODO: Pagination
+        $adverts = Advert::with('city', 'main_photo');
+        if ($category_id = $request->get('ctg')) {
+            $adverts->where('category_id', $category_id);
+        }
+        if ($city_id = $request->get('city')) {
+            $adverts->where('city_id', $city_id);
+        }
+
+        $adverts = $adverts->active()->limit(self::ADVERT_LIMIT)->get();
 
         return view('advert.all', [
-            'cities' => $cities->toJson(),
-            'categories' => $categories->toJson(),
+            'cities' => $cities,
+            'categories' => $categories,
             'adverts' => $adverts,
         ]);
     }
