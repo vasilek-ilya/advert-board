@@ -19,8 +19,14 @@ class AdvertController extends Controller
 
         $categories = Category::all();
 
-        // TODO: Pagination
-        $adverts = Advert::with('city', 'main_photo');
+        if ($search = $request->get('search')) {
+            $adverts = Advert::search($search)->query(function ($builder) {
+                $builder->with('city', 'main_photo')->active()->limit(self::ADVERT_LIMIT);
+            });
+        } else {
+            $adverts = Advert::with('city', 'main_photo')->active()->limit(self::ADVERT_LIMIT);
+        }
+
         if ($category_id = $request->get('ctg')) {
             $adverts->where('category_id', $category_id);
         }
@@ -28,7 +34,8 @@ class AdvertController extends Controller
             $adverts->where('city_id', $city_id);
         }
 
-        $adverts = $adverts->active()->limit(self::ADVERT_LIMIT)->get();
+        // TODO: Pagination
+        $adverts = $adverts->get();
 
         return view('advert.all', [
             'cities' => $cities,

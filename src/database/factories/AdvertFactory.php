@@ -19,7 +19,7 @@ use Illuminate\Support\Str;
 
 $factory->define(Advert::class, function (Faker $faker) {
     return [
-        'title' => $faker->title,
+        'title' => $faker->sentence,
         'price' => $faker->numberBetween(1, 1000),
         'description' => $faker->text,
         'pub_date' => now(),

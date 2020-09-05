@@ -5,7 +5,7 @@
         <form action="" method="GET">
             <div>
                 <div>
-                    <select name="category">
+                    <select name="ctg">
                         <option value="" disabled selected>Choose your option</option>
                         @foreach($categories as $category)
                             <option value="{{ $category->id }}">{{ $category->name }}</option>

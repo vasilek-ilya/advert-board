@@ -11,11 +11,10 @@
 <div id="app">
     <nav>
         <div class="nav-wrapper container">
-            <a href="#" class="brand-logo">AdvertTask</a>
+            <a href="#" class="brand-logo">Advert Board</a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a href="#">Test 1</a></li>
-                <li><a href="#">Test 2</a></li>
-                <li><a href="#">Test 3</a></li>
+                <li><a href="#">Login</a></li>
+                <li><a href="#">Sign Up</a></li>
             </ul>
         </div>
     </nav>

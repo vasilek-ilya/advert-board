@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Scout\Searchable;
 
 /**
  * Class Advert
@@ -11,6 +12,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Advert extends Model
 {
+    use Searchable;
+
     const ACTIVE_STATUS = 1;
     const CLOSED_STATUS = 0;
 
@@ -39,7 +42,7 @@ class Advert extends Model
 
     public function main_photo()
     {
-        return $this->hasMany(Photo::class)->take(1);
+        return $this->hasOne(Photo::class);
     }
 
     /** SCOPES */
