@@ -14,6 +14,7 @@ class Advert extends Model
     const ACTIVE_STATUS = 1;
     const CLOSED_STATUS = 0;
 
+    public $timestamps = false;
 
     /** RELATIONS */
     public function user()
