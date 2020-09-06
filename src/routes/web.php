@@ -15,6 +15,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('', 'AdvertController@all')->name('index');
 Route::get('my/adverts', 'AdvertController@my')->name('my.adverts');
 Route::get('add/adverts', 'AdvertController@add')->name('add.advert');
+Route::get('advert/{id}', 'AdvertController@show')->name('show.advert');
+
+Route::post('user/save', 'HomeController@save')->name('user.save');
 
 Auth::routes();
 

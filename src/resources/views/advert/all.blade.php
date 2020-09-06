@@ -46,19 +46,29 @@
         </form>
 
         <h2>Actual adverts</h2>
-        <div class="advert-list">
+        <div class="advert-list row">
             @foreach($adverts as $advert)
-            <div class="advert-cart">
-                <div class="advert-photo">
-                    <img src="{{ is_null($advert->main_photo) ? 'default_photo' : $advert->main_photo->path }}" alt="">
+                <div class="card col-sm-6">
+                    <img src="..." class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <a
+                                href="{{ route('show.advert', ['id' => $advert->id]) }}"
+                                class="stretched-link"
+                            >
+                                {{ $advert->title }}
+                            </a>
+                        </h5>
+                        <p class="card-text">
+                            <span class="font-weight-bold">${{ $advert->price }}</span><br>
+                            <span class="text-secondary">
+                                {{ $advert->city->name }}<br>
+                                {{ date('jS \of F Y H:i:s', strtotime($advert->pub_date)) }}
+                            </span>
+
+                        </p>
+                    </div>
                 </div>
-                <div class="advert-desc font-weight-bold">
-                    <div class="advert--title blue-text">{{ $advert->title }}</div>
-                    <div class="advert-price text-darken-4">{{ $advert->price }}</div>
-                    <div class="advert-city grey-text">{{ $advert->city->name }}</div>
-                    <div class="advert-pub-date grey-text">{{ $advert->pub_date }}</div>
-                </div>
-            </div>
             @endforeach
         </div>
     </div>

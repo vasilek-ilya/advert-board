@@ -43,4 +43,14 @@ class AdvertController extends Controller
             'adverts' => $adverts,
         ]);
     }
+
+    public function show(Request $request, $advert_id)
+    {
+        // TODO: With user && Get advert count of user
+        $advert = Advert::findOrFail($advert_id);
+
+        return view('advert.show', [
+            'advert' => $advert,
+        ]);
+    }
 }
