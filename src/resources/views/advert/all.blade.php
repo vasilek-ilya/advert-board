@@ -1,37 +1,47 @@
-@extends('layout.default')
+@extends('layouts.app')
 
 @section('content')
-    <div class="row">
-        <form action="" method="GET">
-            <div>
-                <div>
-                    <select name="ctg">
-                        <option value="" disabled selected>Choose your option</option>
-                        @foreach($categories as $category)
-                            <option value="{{ $category->id }}">{{ $category->name }}</option>
-                        @endforeach
-                    </select>
-                    <label>Category</label>
-                </div>
+    <div class="container">
+        <form class="row" action="" method="GET">
+            <div class="form-group col-sm-4">
+                <select class="form-control" name="ctg">
+                    <option value="" disabled selected>Choose category</option>
+                    @foreach($categories as $category)
+                        <option
+                            value="{{ $category->id }}"
+                            {{ request()->get('ctg') == $category->id ? 'selected' : '' }}
+                        >
+                            {{ $category->name }}
+                        </option>
+                    @endforeach
+                </select>
             </div>
 
-            <div>
-                <div>
-                    <select name="city">
-                        <option value="" disabled selected>Choose your option</option>
-                        @foreach($cities as $city)
-                            <option value="{{ $city->id }}">{{ $city->name }}</option>
-                        @endforeach
-                    </select>
-                    <label>City</label>
-                </div>
+            <div class="form-group col-sm-4">
+                <select class="form-control" name="city">
+                    <option value="" disabled selected>Choose city</option>
+                    @foreach($cities as $city)
+                        <option
+                            value="{{ $city->id }}"
+                            {{ request()->get('city') == $city->id ? 'selected' : '' }}
+                        >
+                            {{ $city->name }}
+                        </option>
+                    @endforeach
+                </select>
             </div>
 
-            <div>
-                <div>
-                    <input name="search" type="text">
+            <div class="form-group form-inline col-sm-4 row">
+                <div class="col-sm-8">
+                    <input
+                        placeholder="Search..."
+                        class="form-control"
+                        name="search"
+                        type="text"
+                        value="{{ request()->get('search') }}"
+                    >
                 </div>
-                <input type="submit" value="Search">
+                <button type="submit" class="btn btn-outline-primary col-sm-4">Search</button>
             </div>
         </form>
 
@@ -52,10 +62,4 @@
             @endforeach
         </div>
     </div>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var elems = document.querySelectorAll('select');
-            var instances = M.FormSelect.init(elems, options);
-        });
-    </script>
 @endsection

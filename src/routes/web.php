@@ -12,4 +12,10 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('', 'AdvertController@all');
+Route::get('', 'AdvertController@all')->name('index');
+Route::get('my/adverts', 'AdvertController@my')->name('my.adverts');
+Route::get('add/adverts', 'AdvertController@add')->name('add.advert');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
