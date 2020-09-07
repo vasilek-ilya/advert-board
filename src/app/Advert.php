@@ -19,6 +19,8 @@ class Advert extends Model
 
     public $timestamps = false;
 
+    protected $fillable = ['title', 'category_id', 'description', 'city_id', 'price', 'pub_date', 'user_id'];
+
     /** RELATIONS */
     public function user()
     {
@@ -49,5 +51,12 @@ class Advert extends Model
     public function scopeActive(Builder $query)
     {
         return $query->whereStatus(self::ACTIVE_STATUS);
+    }
+
+    /** METHODS */
+    public function close()
+    {
+        $this->status = self::CLOSED_STATUS;
+        $this->save();
     }
 }

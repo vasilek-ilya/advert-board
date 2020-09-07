@@ -13,8 +13,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::get('', 'AdvertController@all')->name('index');
-Route::get('my/adverts', 'AdvertController@my')->name('my.adverts');
-Route::get('add/adverts', 'AdvertController@add')->name('add.advert');
+Route::get('my/adverts', 'AdvertController@my')->name('my.adverts')->middleware('auth');
+Route::get('close/advert/{id}', 'AdvertController@close')->name('close.advert');
+
+Route::get('add/advert', 'AdvertController@showAddForm')->name('show.add.form.advert');
+Route::post('add/advert', 'AdvertController@add')->name('add.advert');
+
+Route::get('edit/advert/{id}', 'AdvertController@showEditForm')->name('show.edit.form.advert');
+Route::post('edit/advert', 'AdvertController@edit')->name('edit.advert');
+
 Route::get('advert/{id}', 'AdvertController@show')->name('show.advert');
 
 Route::post('user/save', 'HomeController@save')->name('user.save');

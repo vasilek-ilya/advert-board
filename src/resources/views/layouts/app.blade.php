@@ -63,7 +63,7 @@
                                         My Adverts
                                     </a>
 
-                                    <a class="dropdown-item" href="{{ route('add.advert') }}">
+                                    <a class="dropdown-item" href="{{ route('show.add.form.advert') }}">
                                         Add advert
                                     </a>
 
